@@ -4,10 +4,16 @@
     See https://github.com/ishiko-cpp/concurrency/blob/main/LICENSE.txt
 */
 
-#ifndef _ISHIKO_CPP_CONCURRENCY_HPP_
-#define _ISHIKO_CPP_CONCURRENCY_HPP_
+#ifndef _ISHIKO_CPP_CONCURRENCY_THREADPOOL_HPP_
+#define _ISHIKO_CPP_CONCURRENCY_THREADPOOL_HPP_
 
-#include "Concurrency/linkoptions.hpp"
-#include "Concurrency/ThreadPool.hpp"
+namespace Ishiko
+{
+
+class ThreadPool
+{
+};
+
+}
 
 #endif
