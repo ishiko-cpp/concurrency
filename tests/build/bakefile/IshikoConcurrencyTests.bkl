@@ -20,8 +20,14 @@ program IshikoConcurrencyTests : IshikoConcurrency, IshikoTestFrameworkCore
         libs += IshikoTestFrameworkCore IshikoProcess boost_filesystem;
     }
 
+    headers
+    {
+        ../../src/ThreadPoolTests.hpp
+    }
+
     sources
     {
         ../../src/main.cpp
+        ../../src/ThreadPoolTests.cpp
     }
 }
