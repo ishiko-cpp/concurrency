@@ -45,13 +45,30 @@ _false :=
 _not    = $(if $(1),$(_false),$(_true_))
 _equal  = $(and $(findstring $(1),$(2)),$(findstring $(2),$(1)))
 
+
+# The directory for the build files, may be overridden on make command line.
+builddir = .
+
+ifneq ($(builddir),.)
+_builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(builddir)/../gnumake/
+_builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
+$(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
+endif
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoMemory).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoMemory).a:
-	$(AR) rc $@ 
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoMemory).a: $(_builddir)IshikoMemory_ThreadPool.o
+	$(AR) rc $@ $(_builddir)IshikoMemory_ThreadPool.o
 	$(RANLIB) $@
 
+$(_builddir)IshikoMemory_ThreadPool.o: ../../src/ThreadPool.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Concurrency -std=c++11 ../../src/ThreadPool.cpp
+
 clean:
+	rm -f $(_builddir)*.o
+	rm -f $(_builddir)*.d
 	rm -f ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoMemory).a
 
 .PHONY: all clean
+
+# Dependencies tracking:
+-include $(_builddir)*.d

@@ -150,7 +150,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\ThreadPool.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\Concurrency.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Concurrency\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Concurrency\ThreadPool.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

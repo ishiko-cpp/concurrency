@@ -31,5 +31,12 @@ library IshikoMemory
     headers
     {
         ../../include/Ishiko/Concurrency.hpp
+        ../../include/Ishiko/Concurrency/linkoptions.hpp
+        ../../include/Ishiko/Concurrency/ThreadPool.hpp
+    }
+
+    sources
+    {
+        ../../src/ThreadPool.cpp
     }
 }
