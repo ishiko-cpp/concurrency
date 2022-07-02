@@ -17,7 +17,7 @@ program IshikoConcurrencyTests : IshikoConcurrency, IshikoTestFrameworkCore
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++11";
-        libs += IshikoTestFrameworkCore IshikoProcess boost_filesystem;
+        libs += IshikoTestFrameworkCore IshikoXML IshikoProcess IshikoErrors boost_filesystem;
     }
 
     headers
