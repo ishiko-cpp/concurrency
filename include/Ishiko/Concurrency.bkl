@@ -1,7 +1,7 @@
 setting ISHIKO_CPP_CONCURRENCY_ROOT
 {
     help = "Path to the Ishiko/C++ Concurrency installation";
-    default = '$(ISHIKO_CPP)/concurrency';
+    default = '$(ISHIKO_CPP_ROOT)/concurrency';
 }
 
 template IshikoConcurrency
