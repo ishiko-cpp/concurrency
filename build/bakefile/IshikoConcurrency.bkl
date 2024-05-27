@@ -7,7 +7,7 @@ vs2017.solutionfile = ../vc15/IshikoConcurrency.sln;
 vs2015.solutionfile = ../vc14/IshikoConcurrency.sln;
 vs2013.solutionfile = ../vc12/IshikoConcurrency.sln;
 
-library IshikoMemory
+library IshikoConcurrency
 {
     archs = x86 x86_64;
 
