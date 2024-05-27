@@ -54,19 +54,19 @@ _builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(bui
 _builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
 $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
 endif
-all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoMemory).a
+all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoConcurrency).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoMemory).a: $(_builddir)IshikoMemory_ThreadPool.o
-	$(AR) rc $@ $(_builddir)IshikoMemory_ThreadPool.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoConcurrency).a: $(_builddir)IshikoConcurrency_ThreadPool.o
+	$(AR) rc $@ $(_builddir)IshikoConcurrency_ThreadPool.o
 	$(RANLIB) $@
 
-$(_builddir)IshikoMemory_ThreadPool.o: ../../src/ThreadPool.cpp
+$(_builddir)IshikoConcurrency_ThreadPool.o: ../../src/ThreadPool.cpp
 	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Concurrency -std=c++11 ../../src/ThreadPool.cpp
 
 clean:
 	rm -f $(_builddir)*.o
 	rm -f $(_builddir)*.d
-	rm -f ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoMemory).a
+	rm -f ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoConcurrency).a
 
 .PHONY: all clean
 
