@@ -23,6 +23,9 @@
     <ClInclude Include="..\..\include\Ishiko\Concurrency\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\Concurrency\Thread.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Concurrency\ThreadPool.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>

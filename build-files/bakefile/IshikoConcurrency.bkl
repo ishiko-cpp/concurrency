@@ -32,6 +32,7 @@ library IshikoConcurrency
     {
         ../../include/Ishiko/Concurrency.hpp
         ../../include/Ishiko/Concurrency/linkoptions.hpp
+        ../../include/Ishiko/Concurrency/Thread.hpp
         ../../include/Ishiko/Concurrency/ThreadPool.hpp
     }
 

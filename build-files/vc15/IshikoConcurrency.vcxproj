@@ -159,6 +159,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\Ishiko\Concurrency.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Concurrency\linkoptions.hpp" />
+    <ClInclude Include="..\..\include\Ishiko\Concurrency\Thread.hpp" />
     <ClInclude Include="..\..\include\Ishiko\Concurrency\ThreadPool.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
