@@ -1,10 +1,9 @@
-toolsets = gnu vs2022 vs2019 vs2017 vs2015;
+toolsets = gnu vs2022 vs2019 vs2017;
 
 gnu.makefile = ../gnumake/GNUmakefile;
 vs2022.solutionfile = ../vc17/IshikoConcurrency.sln;
 vs2019.solutionfile = ../vc16/IshikoConcurrency.sln;
 vs2017.solutionfile = ../vc15/IshikoConcurrency.sln;
-vs2015.solutionfile = ../vc14/IshikoConcurrency.sln;
 
 library IshikoConcurrency
 {
@@ -14,12 +13,13 @@ library IshikoConcurrency
 
     if ($(toolset) == gnu)
     {
-        cxx-compiler-options = "-std=c++11";
+        cxx-compiler-options = "-std=c++14";
         outputdir = ../../lib;
     }
 
     if ($(toolset) != gnu)
     {
+        cxx-compiler-options = "/utf-8";
         outputdir = ../../lib/$(arch);
     }
 
