@@ -1,3 +1,6 @@
+ishikopath = envvar("ISHIKO_CPP_ROOT");
+import $(ishikopath)/base-platform/include/Ishiko/BasePlatform.bkl;
+
 toolsets = gnu vs2022 vs2019 vs2017;
 
 gnu.makefile = ../gnumake/GNUmakefile;
@@ -5,7 +8,7 @@ vs2022.solutionfile = ../vc17/IshikoConcurrency.sln;
 vs2019.solutionfile = ../vc16/IshikoConcurrency.sln;
 vs2017.solutionfile = ../vc15/IshikoConcurrency.sln;
 
-library IshikoConcurrency
+library IshikoConcurrency : IshikoBasePlatform
 {
     archs = x86 x86_64;
 
@@ -39,5 +42,31 @@ library IshikoConcurrency
     sources
     {
         ../../src/ThreadPool.cpp
+    }
+
+    if ($(toolset) == gnu)
+    {
+        headers
+        {
+            ../../include/Ishiko/Concurrency/linux/Thread.hpp
+        }
+
+        sources
+        {
+            ../../src/linux/Thread.cpp
+        }
+    }
+
+    if ($(toolset) != gnu)
+    {
+        headers
+        {
+           ../../include/Ishiko/Concurrency/windows/Thread.hpp
+        }
+
+        sources
+        {
+            ../../src/windows/Thread.cpp
+        }
     }
 }

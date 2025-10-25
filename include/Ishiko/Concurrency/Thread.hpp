@@ -4,4 +4,14 @@
 #ifndef GUARD_ISHIKO_CPP_CONCURRENCY_THREAD_HPP
 #define GUARD_ISHIKO_CPP_CONCURRENCY_THREAD_HPP
 
+#include <Ishiko/BasePlatform.hpp>
+
+#if ISHIKO_OS == ISHIKO_OS_LINUX
+#include "linux/Thread.hpp"
+#elif ISHIKO_OS == ISHIKO_OS_WINDOWS
+#include "windows/Thread.hpp"
+#else
+#error Unsupported or unrecognized OS
+#endif
+
 #endif

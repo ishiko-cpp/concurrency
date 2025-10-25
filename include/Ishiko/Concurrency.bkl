@@ -1,10 +1,13 @@
+ishikopath = envvar("ISHIKO_CPP_ROOT");
+import $(ishikopath)/base-platform/include/Ishiko/BasePlatform.bkl;
+
 setting ISHIKO_CPP_CONCURRENCY_ROOT
 {
     help = "Path to the Ishiko/C++ Concurrency installation";
     default = '$(ISHIKO_CPP_ROOT)/concurrency';
 }
 
-template IshikoConcurrency
+template IshikoConcurrency : IshikoBasePlatform
 {
     includedirs += $(ISHIKO_CPP_CONCURRENCY_ROOT)/include;
 

@@ -5,6 +5,7 @@
 #define GUARD_ISHIKO_CPP_CONCURRENCY_HPP
 
 #include "Concurrency/linkoptions.hpp"
+#include "Concurrency/Thread.hpp"
 #include "Concurrency/ThreadPool.hpp"
 
 #endif
