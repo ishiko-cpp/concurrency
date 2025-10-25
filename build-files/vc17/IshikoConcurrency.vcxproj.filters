@@ -23,12 +23,21 @@
     <ClInclude Include="..\..\include\Ishiko\Concurrency\linkoptions.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\Concurrency\Thread.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Ishiko\Concurrency\ThreadPool.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Ishiko\Concurrency\windows\Thread.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\ThreadPool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\windows\Thread.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
