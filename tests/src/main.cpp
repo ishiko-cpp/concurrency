@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: BSL-1.0
 
 #include "ThreadPoolTests.hpp"
+#include "ThreadTests.hpp"
 #include "Ishiko/Concurrency/linkoptions.hpp"
 #include <Ishiko/TestFramework/Core.hpp>
 
@@ -12,6 +13,7 @@ int main(int argc, char* argv[])
     TestHarness theTestHarness("IshikoConcurrency");
 
     TestSequence& theTests = theTestHarness.tests();
+    theTests.append<ThreadTests>();
     theTests.append<ThreadPoolTests>();
 
     return theTestHarness.run();

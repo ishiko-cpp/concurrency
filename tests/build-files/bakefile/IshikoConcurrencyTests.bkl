@@ -28,11 +28,13 @@ program IshikoConcurrencyTests : IshikoConcurrency, IshikoTestFrameworkCore
     headers
     {
         ../../src/ThreadPoolTests.hpp
+        ../../src/ThreadTests.hpp
     }
 
     sources
     {
         ../../src/main.cpp
         ../../src/ThreadPoolTests.cpp
+        ../../src/ThreadTests.cpp
     }
 }
