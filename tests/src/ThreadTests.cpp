@@ -11,6 +11,7 @@ ThreadTests::ThreadTests(const TestNumber& number, const TestContext& context)
     : TestSequence(number, "Thread tests", context)
 {
     append<HeapAllocationErrorsTest>("Constructor test 1", ConstructorTest1);
+    append<HeapAllocationErrorsTest>("resume test 1", ResumeTest1);
 }
 
 
@@ -31,6 +32,18 @@ static DWORD ConstructorTest1Test1Helper(void* arg)
 void ThreadTests::ConstructorTest1(Test& test)
 {
     Thread thread(ConstructorTest1Test1Helper, nullptr);
+
+    // Do not join as this thread is created in a suspended state
+
+
+    ISHIKO_TEST_PASS();
+}
+
+void ThreadTests::ResumeTest1(Test& test)
+{
+    Thread thread(ConstructorTest1Test1Helper, nullptr);
+    thread.resume();
+    thread.join();
 
     ISHIKO_TEST_PASS();
 }
