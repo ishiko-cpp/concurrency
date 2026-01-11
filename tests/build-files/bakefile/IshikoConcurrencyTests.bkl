@@ -16,7 +16,7 @@ program IshikoConcurrencyTests : IshikoConcurrency, IshikoTestFrameworkCore
     if ($(toolset) == gnu)
     {
         cxx-compiler-options = "-std=c++14";
-        libs += IshikoTestFrameworkCore IshikoConfiguration IshikoXML IshikoFileSystem IshikoIO IshikoProcess IshikoTime IshikoText IshikoErrors IshikoBasePlatform;
+        libs += IshikoTestFrameworkCore IshikoConfiguration IshikoXML IshikoFileSystem IshikoIO IshikoProcess IshikoConcurrency IshikoTime IshikoText IshikoErrors IshikoBasePlatform;
         libs += fmt boost_filesystem;
     }
 
@@ -28,11 +28,13 @@ program IshikoConcurrencyTests : IshikoConcurrency, IshikoTestFrameworkCore
     headers
     {
         ../../src/ThreadPoolTests.hpp
+        ../../src/ThreadTests.hpp
     }
 
     sources
     {
         ../../src/main.cpp
         ../../src/ThreadPoolTests.cpp
+        ../../src/ThreadTests.cpp
     }
 }
