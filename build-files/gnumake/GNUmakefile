@@ -33,6 +33,11 @@ override CXXFLAGS += -O2
 else ifneq (,$(config))
 $(warning Unknown configuration "$(config)")
 endif
+#
+# Additionally, this makefile is customizable with the following
+# settings:
+#
+#      ISHIKO_CPP_BASEPLATFORM_ROOT  Path to the Ishiko/C++ BasePlatform installation
 
 # Use "make RANLIB=''" for platforms without ranlib.
 RANLIB ?= ranlib
@@ -54,14 +59,27 @@ _builddir := $(if $(findstring $(abspath $(builddir)),$(builddir)),,../../)$(bui
 _builddir_error := $(shell mkdir -p $(_builddir) 2>&1)
 $(if $(_builddir_error),$(error Failed to create build directory: $(_builddir_error)))
 endif
+
+# ------------
+# Configurable settings:
+# 
+
+# Path to the Ishiko/C++ BasePlatform installation
+ISHIKO_CPP_BASEPLATFORM_ROOT ?= $(ISHIKO_CPP_ROOT)/base-platform
+
+# ------------
+
 all: ../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoConcurrency).a
 
-../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoConcurrency).a: $(_builddir)IshikoConcurrency_ThreadPool.o
-	$(AR) rc $@ $(_builddir)IshikoConcurrency_ThreadPool.o
+../bakefile/../../lib/lib$(if $(call _equal,$(config),Debug),IshikoConcurrency-d,IshikoConcurrency).a: $(_builddir)IshikoConcurrency_ThreadPool.o $(_builddir)IshikoConcurrency_Thread.o
+	$(AR) rc $@ $(_builddir)IshikoConcurrency_ThreadPool.o $(_builddir)IshikoConcurrency_Thread.o
 	$(RANLIB) $@
 
 $(_builddir)IshikoConcurrency_ThreadPool.o: ../../src/ThreadPool.cpp
-	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I../../include/Ishiko/Concurrency -std=c++14 ../../src/ThreadPool.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Concurrency -std=c++14 ../../src/ThreadPool.cpp
+
+$(_builddir)IshikoConcurrency_Thread.o: ../../src/linux/Thread.cpp
+	$(CXX) -c -o $@ $(CPPFLAGS) $(CXXFLAGS) -MD -MP -fPIC -DPIC -pthread -I$(ISHIKO_CPP_BASEPLATFORM_ROOT)/include -I../../include/Ishiko/Concurrency -std=c++14 ../../src/linux/Thread.cpp
 
 clean:
 	rm -f $(_builddir)*.o
