@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="https://nuime.org/schema/core/1">
+  <name>concurrency</name>
+  <targets>
+    <target>
+      <name>concurrency-lib</name>
+      <labels>
+        <label>nuime:product</label>
+      </labels>
+      <build-dependencies>
+        <dependency>
+          <name>base-platform</name>
+          <target-refs>
+            <target-ref>
+              <location>
+                <url>https://github.com/ishiko-cpp/base-platform/build-files/nuime/base-platform.nuime</url>
+              </location>
+              <name>base-platform-lib</name>
+            </target-ref>
+          </target-refs>
+        </dependency>
+      </build-dependencies>
+      <properties>
+        <property name="nuime:test-suite">
+          <target-ref>
+            <location>
+              <url>https://github.com/ishiko-cpp/concurrency/tests/build-files/nuime/concurrency-tests.nuime</url>
+            </location>
+            <name>concurrency-tests</name>
+          </target-ref>
+        </property>
+      </properties>
+    </target>
+  </targets>
+  <subprojects>
+    <subproject>
+      <name>concurrency-tests</name>
+      <labels>
+        <label>nuime:tests</label>
+      </labels>
+      <location>
+        <url>https://github.com/ishiko-cpp/concurrency/tests/build-files/nuime/concurrency-tests.nuime</url>
+      </location>
+    </subproject>
+  </subprojects>
+</project>
